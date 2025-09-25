@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Miale Ya Pambazuko Design System - Colors inspired by hope, empowerment, and African warmth */
+
+@layer base {
+  :root {
+    /* Core brand colors */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 2%;
+
+    /* Brand golden orange - warmth & empowerment */
+    --primary: 41 97% 49%;
+    --primary-foreground: 0 0% 2%;
+    --primary-hover: 41 97% 44%;
+
+    /* Hope golden - warmth & optimism */
+    --hope: 41 97% 49%;
+    --hope-foreground: 0 0% 2%;
+    --hope-hover: 41 97% 44%;
+
+    /* Trust blue - reliability & support */
+    --trust: 220 90% 56%;
+    --trust-foreground: 0 0% 100%;
+
+    /* Success green - growth & achievement */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+
+    /* Warm neutrals */
+    --warm-gray: 30 5% 95%;
+    --warm-gray-foreground: 30 5% 15%;
+
+    --secondary: 41 15% 95%;
+    --secondary-foreground: 0 0% 2%;
+
+    --muted: 41 10% 97%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 41 15% 95%;
+    --accent-foreground: 0 0% 2%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 2%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 41 97% 49%;
+
+    --radius: 0.75rem;
+
+    /* Beautiful gradients */
+    --gradient-hope: linear-gradient(135deg, hsl(var(--hope)), hsl(41 97% 44%));
+    --gradient-trust: linear-gradient(135deg, hsl(var(--trust)), hsl(var(--primary)));
+    --gradient-sunset: linear-gradient(135deg, hsl(41 97% 49%), hsl(41 97% 44%), hsl(41 97% 39%));
+    --gradient-warm: linear-gradient(180deg, hsl(var(--warm-gray)), hsl(0 0% 100%));
+
+    /* Shadows with brand colors */
+    --shadow-warm: 0 4px 20px -2px hsl(var(--primary) / 0.1);
+    --shadow-hope: 0 8px 30px -4px hsl(var(--hope) / 0.2);
+    --shadow-elegant: 0 10px 40px -10px hsl(var(--primary) / 0.15);
+
+    /* Animation easing */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 0 0% 2%;
+    --foreground: 41 97% 49%;
+
+    --card: 0 0% 5%;
+    --card-foreground: 41 97% 49%;
+
+    --popover: 0 0% 5%;
+    --popover-foreground: 41 97% 49%;
+
+    --primary: 41 97% 49%;
+    --primary-foreground: 0 0% 2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}

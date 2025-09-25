@@ -1,0 +1,20 @@
+project_id = "tnymarwhxonvmfkgutax"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public", "graphql_public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[db]
+enabled = true
+port = 54322
+shadow_port = 54320
+major_version = 15
+
+[functions.create-donation-payment]
+verify_jwt = false
+
+[functions.create-donation-subscription]
+verify_jwt = false
