@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGraduationCap, faUtensils, faHome, faDollarSign, faHeart, faCalendarAlt, faCreditCard } from '@fortawesome/free-solid-svg-icons';
 import { supabase } from "@/integrations/supabase/client";
@@ -63,12 +64,46 @@ const DONATION_TIERS = {
 };
 
 const Donate = () => {
-  const [selectedTier, setSelectedTier] = useState('high-school-annual');
+  const [selectedTier, setSelectedTier] = useState('');
+  const [customAmount, setCustomAmount] = useState('');
   const [donorEmail, setDonorEmail] = useState('');
   const [donorPhone, setDonorPhone] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
   const { toast } = useToast();
   const { formatFromUsdCents, currencyCode, exchangeRateToLocal } = useCurrency();
+
+  const donationOptions = [
+    {
+      value: 'high-school-annual',
+      label: `High School Sponsorship - Annual (${formatFromUsdCents(123100)})`,
+      description: 'Complete high school sponsorship covering tuition, boarding, personal items, transport, and mentorship'
+    },
+    {
+      value: 'high-school-monthly',
+      label: `High School Sponsorship - Monthly (${formatFromUsdCents(10258)}/month)`,
+      description: 'Monthly high school sponsorship with flexible payment schedule'
+    },
+    {
+      value: 'primary-school-annual',
+      label: `Primary School Sponsorship - Annual (${formatFromUsdCents(92400)})`,
+      description: 'Complete primary boarding school package with all necessities'
+    },
+    {
+      value: 'primary-school-monthly',
+      label: `Primary School Sponsorship - Monthly (${formatFromUsdCents(7700)}/month)`,
+      description: 'Monthly primary school sponsorship with flexible payment schedule'
+    },
+    {
+      value: 'house-rent',
+      label: `House Rent & Bills (${formatFromUsdCents(46200)}/month)`,
+      description: 'Monthly house rent and utility bills for facilities'
+    },
+    {
+      value: 'custom',
+      label: 'Custom Amount',
+      description: 'Enter your own donation amount'
+    }
+  ];
 
   const handleDonation = async () => {
     if (!donorEmail) {
@@ -80,7 +115,26 @@ const Donate = () => {
       return;
     }
 
-    const isCustom = selectedTier.startsWith('custom-amount');
+    if (!selectedTier) {
+      toast({
+        title: "Selection Required",
+        description: "Please select a donation option",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const isCustom = selectedTier === 'custom';
+    
+    if (isCustom && (!customAmount || parseFloat(customAmount) <= 0)) {
+      toast({
+        title: "Amount Required",
+        description: "Please enter a valid custom amount",
+        variant: "destructive",
+      });
+      return;
+    }
+
     const tier = DONATION_TIERS[selectedTier as keyof typeof DONATION_TIERS];
     if (!isCustom && !tier) return;
 
@@ -91,25 +145,16 @@ const Donate = () => {
         ? 'create-donation-subscription' 
         : 'create-donation-payment';
 
-      // Determine payload: preset price or custom amount
       let body: any = {
-          donorEmail,
-          donorPhone,
+        donorEmail,
+        donorPhone,
         donationType: isCustom ? 'custom' : selectedTier,
       };
+
       if (isCustom) {
-        let amountCents = (window as any)._customAmountCents as number | undefined;
-        // Parse from id e.g. custom-amount-2500 when quick button used
-        if (!amountCents && selectedTier.startsWith('custom-amount-')) {
-          const parsed = Number(selectedTier.split('custom-amount-')[1]);
-          if (Number.isFinite(parsed)) amountCents = parsed;
-        }
-        if (!amountCents || amountCents <= 0) {
-          toast({ title: 'Amount Required', description: 'Enter a valid custom amount', variant: 'destructive' });
-          setIsProcessing(false);
-          return;
-        }
-        body.customAmountCents = Math.round(amountCents);
+        const amountInUsd = parseFloat(customAmount);
+        const amountCents = Math.round(amountInUsd * 100);
+        body.customAmountCents = amountCents;
         body.currency = currencyCode;
       } else {
         body.priceId = tier.priceId;
@@ -120,7 +165,6 @@ const Donate = () => {
       if (error) throw error;
 
       if (data?.url) {
-        // Open Stripe checkout in new tab
         window.open(data.url, '_blank');
       } else {
         throw new Error('No checkout URL received');
@@ -156,374 +200,179 @@ const Donate = () => {
               alt="Hands giving donation to help children" 
         />
 
-        {/* Donation Options and Custom Donation */}
+        {/* Simple Donation Form */}
         <section className="py-20 bg-background">
           <div className="container mx-auto px-6">
-            <div className="max-w-7xl mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                
-                {/* Left Column - Donation Options */}
-                <div className="lg:col-span-2">
-                  <div className="text-center mb-8">
-                    <h2 className="text-3xl font-bold text-primary mb-4">Choose Your Support Level</h2>
-                    <p className="text-muted-foreground">Select from our structured donation options to make a specific impact</p>
-                  </div>
-                  
-                  {/* Cards Grid */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {/* High School Annual Card */}
-                  <Card className={`overflow-hidden border-2 cursor-pointer transition-all ${selectedTier === 'high-school-annual' ? 'border-hope bg-hope/5' : 'border-border hover:border-hope/50'}`}
-                        onClick={() => setSelectedTier('high-school-annual')}>
-                    <div className="relative h-40 md:h-44 lg:h-48">
-                      <img src={girlsStudyingImg} alt="High School Sponsorship" className="w-full h-full object-cover" />
-                      <span className="absolute top-3 left-3 bg-emerald-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
-                        Education
-                      </span>
-                    </div>
-                    <CardHeader>
-                      <div className="flex items-start justify-between">
-                        <div className="flex items-center space-x-3">
-                          <div className="w-12 h-12 bg-gradient-hope rounded-full flex items-center justify-center">
-                            <FontAwesomeIcon icon={faGraduationCap} className="text-white" />
-                          </div>
-                          <div>
-                            <CardTitle className="text-xl">High School Sponsorship - Annual</CardTitle>
-                            <p className="text-sm text-muted-foreground">One-time payment covering full year</p>
-                          </div>
-                        </div>
-                        <div className="text-right">
-                          <p className="text-2xl font-bold text-hope">{formatFromUsdCents(123100)}</p>
-                          <p className="text-sm text-muted-foreground">per year</p>
-                        </div>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-muted-foreground">Complete high school sponsorship covering tuition, boarding, personal items, transport, and mentorship</p>
-                    </CardContent>
-                  </Card>
-
-                  {/* High School Monthly Card */}
-                  <Card className={`overflow-hidden border-2 cursor-pointer transition-all ${selectedTier === 'high-school-monthly' ? 'border-hope bg-hope/5' : 'border-border hover:border-hope/50'}`}
-                        onClick={() => setSelectedTier('high-school-monthly')}>
-                    <div className="relative h-40 md:h-44 lg:h-48">
-                      <img src={educationSupportImg} alt="High School Monthly" className="w-full h-full object-cover" />
-                      <span className="absolute top-3 left-3 bg-sky-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
-                        Education
-                      </span>
-                    </div>
-                    <CardHeader>
-                      <div className="flex items-start justify-between">
-                        <div className="flex items-center space-x-3">
-                          <div className="w-12 h-12 bg-gradient-trust rounded-full flex items-center justify-center">
-                            <FontAwesomeIcon icon={faCalendarAlt} className="text-white" />
-                          </div>
-                          <div>
-                            <CardTitle className="text-xl">High School Sponsorship - Monthly</CardTitle>
-                            <p className="text-sm text-muted-foreground">Recurring monthly payments</p>
-                          </div>
-                        </div>
-                        <div className="text-right">
-                          <p className="text-2xl font-bold text-hope">{formatFromUsdCents(10258)}</p>
-                          <p className="text-sm text-muted-foreground">per month</p>
-                        </div>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-muted-foreground">Monthly high school sponsorship with flexible payment schedule</p>
-                    </CardContent>
-                  </Card>
-
-                  {/* Primary School Annual Card */}
-                  <Card className={`overflow-hidden border-2 cursor-pointer transition-all ${selectedTier === 'primary-school-annual' ? 'border-hope bg-hope/5' : 'border-border hover:border-hope/50'}`}
-                        onClick={() => setSelectedTier('primary-school-annual')}>
-                    <div className="relative h-40 md:h-44 lg:h-48">
-                      <img src={mentorshipImg} alt="Primary School Sponsorship" className="w-full h-full object-cover" />
-                      <span className="absolute top-3 left-3 bg-rose-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
-                        Primary
-                      </span>
-                    </div>
-                    <CardHeader>
-                      <div className="flex items-start justify-between">
-                        <div className="flex items-center space-x-3">
-                          <div className="w-12 h-12 bg-gradient-sunset rounded-full flex items-center justify-center">
-                            <FontAwesomeIcon icon={faGraduationCap} className="text-white" />
-                          </div>
-                          <div>
-                            <CardTitle className="text-xl">Primary School Sponsorship - Annual</CardTitle>
-                            <p className="text-sm text-muted-foreground">One-time payment covering full year</p>
-                          </div>
-                        </div>
-                        <div className="text-right">
-                          <p className="text-2xl font-bold text-hope">{formatFromUsdCents(92400)}</p>
-                          <p className="text-sm text-muted-foreground">per year</p>
-                        </div>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-muted-foreground">Complete primary boarding school package with all necessities</p>
-                    </CardContent>
-                  </Card>
-
-                  {/* Primary School Monthly Card */}
-                  <Card className={`overflow-hidden border-2 cursor-pointer transition-all ${selectedTier === 'primary-school-monthly' ? 'border-hope bg-hope/5' : 'border-border hover:border-hope/50'}`}
-                        onClick={() => setSelectedTier('primary-school-monthly')}>
-                    <div className="relative h-40 md:h-44 lg:h-48">
-                      <img src={skillsDevelopmentImg} alt="Primary Monthly" className="w-full h-full object-cover" />
-                      <span className="absolute top-3 left-3 bg-amber-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
-                        Primary
-                      </span>
-                    </div>
-                    <CardHeader>
-                      <div className="flex items-start justify-between">
-                        <div className="flex items-center space-x-3">
-                          <div className="w-12 h-12 bg-gradient-warm rounded-full flex items-center justify-center">
-                            <FontAwesomeIcon icon={faCalendarAlt} className="text-white" />
-                          </div>
-                          <div>
-                            <CardTitle className="text-xl">Primary School Sponsorship - Monthly</CardTitle>
-                            <p className="text-sm text-muted-foreground">Recurring monthly payments</p>
-                          </div>
-                        </div>
-                        <div className="text-right">
-                          <p className="text-2xl font-bold text-hope">{formatFromUsdCents(7700)}</p>
-                          <p className="text-sm text-muted-foreground">per month</p>
-                        </div>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-muted-foreground">Monthly primary school sponsorship with flexible payment schedule</p>
-                    </CardContent>
-                  </Card>
-
-                  {/* House Rent Card */}
-                  <Card className={`overflow-hidden border-2 cursor-pointer transition-all ${selectedTier === 'house-rent' ? 'border-hope bg-hope/5' : 'border-border hover:border-hope/50'}`}
-                        onClick={() => setSelectedTier('house-rent')}>
-                    <div className="relative h-40 md:h-44 lg:h-48">
-                      <img src={donationHelpImg} alt="House Rent & Bills" className="w-full h-full object-cover" />
-                      <span className="absolute top-3 left-3 bg-emerald-700 text-white text-xs font-semibold px-3 py-1 rounded-full">
-                        Housing
-                      </span>
-                    </div>
-                    <CardHeader>
-                      <div className="flex items-start justify-between">
-                        <div className="flex items-center space-x-3">
-                          <div className="w-12 h-12 bg-gradient-hope rounded-full flex items-center justify-center">
-                            <FontAwesomeIcon icon={faHome} className="text-white" />
-                          </div>
-                          <div>
-                            <CardTitle className="text-xl">House Rent & Bills</CardTitle>
-                            <p className="text-sm text-muted-foreground">Monthly facility costs</p>
-                          </div>
-                        </div>
-                        <div className="text-right">
-                          <p className="text-2xl font-bold text-hope">{formatFromUsdCents(46200)}</p>
-                          <p className="text-sm text-muted-foreground">per month</p>
-                        </div>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-muted-foreground">Monthly house rent and utility bills for facilities</p>
-                    </CardContent>
-                  </Card>
-                  </div>
-                </div>
-
-                {/* Right Column - Custom Donation and Form */}
-                <div className="lg:col-span-1">
-                  <div className="sticky top-24 space-y-6">
-                    
-                     {/* Custom Donation Card */}
-                    <Card className="border-none shadow-warm bg-gradient-hope text-white">
-                      <CardHeader>
-                        <div className="flex items-center mb-4">
-                          <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-3">
-                            <FontAwesomeIcon icon={faHeart} className="text-white" />
-                          </div>
-                          <CardTitle className="text-xl text-white">Custom Donation</CardTitle>
-                        </div>
-                        <p className="text-white/90 text-sm">
-                          Enter any amount in your local currency ({currencyCode}) and donate securely.
-                        </p>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="space-y-4">
-                          {/* Quick Amount Buttons */}
-                          <div className="grid grid-cols-3 gap-2">
-                            <Button 
-                              variant="secondary" 
-                              size="sm"
-                              className={`bg-white/20 text-white border-white/30 hover:bg-white/30 ${selectedTier === 'custom-amount-2500' ? 'bg-white/40' : ''}`}
-                              onClick={() => {
-                                setSelectedTier('custom-amount-2500');
-                                (window as any)._customAmountCents = 2500;
-                              }}
-                            >
-                              {formatFromUsdCents(2500)}
-                            </Button>
-                            <Button 
-                              variant="secondary" 
-                              size="sm"
-                              className={`bg-white/20 text-white border-white/30 hover:bg-white/30 ${selectedTier === 'custom-amount-5000' ? 'bg-white/40' : ''}`}
-                              onClick={() => {
-                                setSelectedTier('custom-amount-5000');
-                                (window as any)._customAmountCents = 5000;
-                              }}
-                            >
-                              {formatFromUsdCents(5000)}
-                            </Button>
-                            <Button 
-                              variant="secondary" 
-                              size="sm"
-                              className={`bg-white/20 text-white border-white/30 hover:bg-white/30 ${selectedTier === 'custom-amount-10000' ? 'bg-white/40' : ''}`}
-                              onClick={() => {
-                                setSelectedTier('custom-amount-10000');
-                                (window as any)._customAmountCents = 10000;
-                              }}
-                            >
-                              {formatFromUsdCents(10000)}
-                            </Button>
-                          </div>
-
-                          {/* Custom Amount Input */}
-                          <div className="space-y-2">
-                            <Label htmlFor="custom-amount" className="text-white text-sm font-medium">
-                              Enter Custom Amount
-                            </Label>
-                            <div className="relative">
-                              <Input
-                                id="custom-amount"
-                                type="number"
-                                placeholder="0.00"
-                                min="1"
-                                step="0.01"
-                                className="bg-white/20 border-white/30 text-white placeholder:text-white/60 focus:border-white focus:ring-white/50"
-                                onChange={(e) => {
-                                  const value = parseFloat(e.target.value) || 0;
-                                  // Convert local currency to USD cents for backend
-                                  const usdAmount = value / exchangeRateToLocal;
-                                  const usdCents = Math.round(usdAmount * 100);
-                                  (window as any)._customAmountCents = usdCents;
-                                  setSelectedTier('custom-amount');
-                                }}
-                              />
-                              <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white/70 text-sm">
-                                {currencyCode}
-                              </span>
-                            </div>
-                            <p className="text-white/70 text-xs">
-                              Minimum donation: {formatFromUsdCents(100)}
-                            </p>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-
-                    {/* Donation Form Card */}
-                    <Card className="border-none shadow-warm">
-                      <CardHeader>
-                        <CardTitle className="text-xl text-primary">Complete Your Donation</CardTitle>
-                        <p className="text-muted-foreground text-sm">
-                          Enter your information to proceed with the selected donation.
-                        </p>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="space-y-4">
-                          {/* Selected Donation Display */}
-                          {selectedTier && (
-                            <div className="bg-hope/10 p-4 rounded-lg border border-hope/20">
-                              <div className="flex items-center mb-2">
-                                <FontAwesomeIcon icon={faHeart} className="text-hope mr-2" />
-                                <span className="font-semibold text-primary text-sm">Selected Option</span>
-                              </div>
-                              <p className="font-medium text-sm">{DONATION_TIERS[selectedTier as keyof typeof DONATION_TIERS]?.name}</p>
-                              <div className="flex justify-between items-center mt-2">
-                                <span className="text-xl font-bold text-hope">
-                                  {formatFromUsdCents(DONATION_TIERS[selectedTier as keyof typeof DONATION_TIERS]?.price ?? 0)}
-                                </span>
-                                <span className="text-xs text-muted-foreground">
-                                  {DONATION_TIERS[selectedTier as keyof typeof DONATION_TIERS]?.type === 'subscription' ? 'Monthly' : 'One-time'}
-                                </span>
-                              </div>
-                            </div>
-                          )}
-
-                          {/* Form Fields */}
-                          <div className="space-y-4">
-                            <div>
-                              <Label htmlFor="email" className="text-primary font-semibold text-sm">
-                                Email Address *
-                              </Label>
-                              <Input
-                                id="email"
-                                type="email"
-                                placeholder="your.email@example.com"
-                                value={donorEmail}
-                                onChange={(e) => setDonorEmail(e.target.value)}
-                                className="mt-2"
-                                required
-                              />
-                            </div>
-                            <div>
-                              <Label htmlFor="phone" className="text-primary font-semibold text-sm">
-                                Phone Number (Optional)
-                              </Label>
-                              <Input
-                                id="phone"
-                                type="tel"
-                                placeholder="+254 xxx xxx xxx"
-                                value={donorPhone}
-                                onChange={(e) => setDonorPhone(e.target.value)}
-                                className="mt-2"
-                              />
-                            </div>
-                          </div>
-
-                          {/* Donate Button */}
-                          <Button
-                            onClick={handleDonation}
-                            disabled={isProcessing || !donorEmail}
-                            className="w-full bg-gradient-hope hover:bg-gradient-hope/90 text-white border-none"
-                          >
-                            {isProcessing ? (
-                              <>
-                                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                                Processing...
-                              </>
-                            ) : (
-                              <>
-                                <FontAwesomeIcon icon={faCreditCard} className="mr-2" />
-                                Donate Now
-                              </>
-                            )}
-                          </Button>
-                          
-                          <p className="text-xs text-muted-foreground text-center">
-                            Prices shown in {currencyCode}. Secure payment powered by Stripe.
-                          </p>
-                        </div>
-                      </CardContent>
-                    </Card>
-
-                  </div>
-                </div>
-
+            <div className="max-w-lg mx-auto">
+              <div className="text-center mb-8">
+                <h2 className="text-3xl font-bold text-primary mb-4">Make a Donation</h2>
+                <p className="text-muted-foreground">Choose how you'd like to support our mission and help children in need.</p>
               </div>
+              
+              <Card className="border-none shadow-warm">
+                <CardHeader>
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-gradient-hope rounded-full flex items-center justify-center mx-auto mb-4">
+                      <FontAwesomeIcon icon={faHeart} className="text-white text-xl" />
+                    </div>
+                    <CardTitle className="text-xl text-primary">Support Our Cause</CardTitle>
+                    <p className="text-muted-foreground text-sm mt-2">
+                      All amounts are displayed in {currencyCode}
+                    </p>
+                  </div>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  {/* Donation Option Selector */}
+                  <div className="space-y-2">
+                    <Label htmlFor="donation-option" className="text-primary font-semibold">
+                      What would you like to support? *
+                    </Label>
+                    <Select value={selectedTier} onValueChange={setSelectedTier}>
+                      <SelectTrigger className="w-full">
+                        <SelectValue placeholder="Choose a donation option" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {donationOptions.map((option) => (
+                          <SelectItem key={option.value} value={option.value}>
+                            {option.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    {selectedTier && selectedTier !== 'custom' && (
+                      <p className="text-sm text-muted-foreground mt-2">
+                        {donationOptions.find(opt => opt.value === selectedTier)?.description}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Custom Amount Field */}
+                  {selectedTier === 'custom' && (
+                    <div className="space-y-2">
+                      <Label htmlFor="custom-amount" className="text-primary font-semibold">
+                        Enter your donation amount *
+                      </Label>
+                      <div className="relative">
+                        <Input
+                          id="custom-amount"
+                          type="number"
+                          placeholder="0.00"
+                          min="1"
+                          step="0.01"
+                          value={customAmount}
+                          onChange={(e) => setCustomAmount(e.target.value)}
+                          className="pr-16"
+                        />
+                        <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground text-sm">
+                          {currencyCode}
+                        </span>
+                      </div>
+                      <p className="text-xs text-muted-foreground">
+                        Minimum donation: {formatFromUsdCents(100)}
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Contact Information */}
+                  <div className="space-y-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="email" className="text-primary font-semibold">
+                        Email Address *
+                      </Label>
+                      <Input
+                        id="email"
+                        type="email"
+                        placeholder="your@email.com"
+                        value={donorEmail}
+                        onChange={(e) => setDonorEmail(e.target.value)}
+                        required
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="phone" className="text-primary font-semibold">
+                        Phone Number (Optional)
+                      </Label>
+                      <Input
+                        id="phone"
+                        type="tel"
+                        placeholder="+1 (555) 123-4567"
+                        value={donorPhone}
+                        onChange={(e) => setDonorPhone(e.target.value)}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Donation Summary */}
+                  {selectedTier && (
+                    <div className="bg-hope/10 p-4 rounded-lg border border-hope/20">
+                      <div className="flex items-center mb-2">
+                        <FontAwesomeIcon icon={faCreditCard} className="text-hope mr-2" />
+                        <span className="font-semibold text-primary text-sm">Donation Summary</span>
+                      </div>
+                      {selectedTier === 'custom' ? (
+                        <div>
+                          <p className="font-medium text-sm">Custom Donation</p>
+                          {customAmount && (
+                            <p className="text-xl font-bold text-hope">
+                              {parseFloat(customAmount) > 0 ? `${currencyCode} ${parseFloat(customAmount).toFixed(2)}` : 'Please enter amount'}
+                            </p>
+                          )}
+                        </div>
+                      ) : (
+                        <div>
+                          <p className="font-medium text-sm">
+                            {donationOptions.find(opt => opt.value === selectedTier)?.label}
+                          </p>
+                          <div className="flex justify-between items-center mt-2">
+                            <span className="text-xl font-bold text-hope">
+                              {formatFromUsdCents(DONATION_TIERS[selectedTier as keyof typeof DONATION_TIERS]?.price ?? 0)}
+                            </span>
+                            <span className="text-xs text-muted-foreground">
+                              {DONATION_TIERS[selectedTier as keyof typeof DONATION_TIERS]?.type === 'subscription' ? 'Monthly' : 'One-time'}
+                            </span>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Donate Button */}
+                  <Button 
+                    onClick={handleDonation}
+                    disabled={isProcessing || !selectedTier || !donorEmail}
+                    className="w-full bg-gradient-hope hover:opacity-90 text-white py-3 h-auto"
+                    size="lg"
+                  >
+                    {isProcessing ? (
+                      <div className="flex items-center gap-2">
+                        <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                        Processing...
+                      </div>
+                    ) : (
+                      <div className="flex items-center gap-2">
+                        <FontAwesomeIcon icon={faHeart} />
+                        Donate Securely
+                      </div>
+                    )}
+                  </Button>
+
+                  <p className="text-xs text-muted-foreground text-center">
+                    Secure payment processed by Stripe. You will be redirected to complete your donation.
+                  </p>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </section>
 
-        {/* Partnership Impact Info */}
-        <section className="py-16 bg-warm-gray">
+        {/* Impact Information */}
+        <section className="py-16 bg-muted/30">
           <div className="container mx-auto px-6">
-            <div className="max-w-4xl mx-auto">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold text-primary mb-4">Your Impact in Action</h2>
-                <p className="text-muted-foreground">See how your donations transform lives through our comprehensive support programs</p>
-              </div>
-              
+            <div className="max-w-4xl mx-auto text-center">
+              <h2 className="text-2xl md:text-3xl font-bold text-primary mb-8">Your Impact Matters</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 
-                {/* Education Support */}
                 <Card className="border-none shadow-warm bg-card">
                   <CardHeader>
                     <div className="w-12 h-12 bg-gradient-hope rounded-full flex items-center justify-center mb-2">
@@ -538,13 +387,12 @@ const Donate = () => {
                   </CardContent>
                 </Card>
 
-                {/* Material Support */}
                 <Card className="border-none shadow-warm bg-card">
                   <CardHeader>
                     <div className="w-12 h-12 bg-gradient-hope rounded-full flex items-center justify-center mb-2">
                       <FontAwesomeIcon icon={faUtensils} className="text-white" />
                     </div>
-                    <CardTitle className="text-lg text-primary">Material Needs</CardTitle>
+                    <CardTitle className="text-lg text-primary">Basic Needs</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <p className="text-sm text-muted-foreground">
@@ -553,7 +401,6 @@ const Donate = () => {
                   </CardContent>
                 </Card>
 
-                {/* Facility Costs */}
                 <Card className="border-none shadow-warm bg-card">
                   <CardHeader>
                     <div className="w-12 h-12 bg-gradient-hope rounded-full flex items-center justify-center mb-2">
@@ -574,35 +421,22 @@ const Donate = () => {
         </section>
 
         {/* Call to Action */}
-        <section className="py-20 bg-gradient-hope text-white">
+        <section className="py-16 bg-gradient-hope text-white">
           <div className="container mx-auto px-6 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Ready to Make a Difference?
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              Questions About Donating?
             </h2>
-            <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-              Every contribution, no matter the size, helps us transform lives and build brighter futures for vulnerable children.
+            <p className="text-lg mb-6 opacity-90 max-w-2xl mx-auto">
+              We're here to help! Contact us if you have questions about donations, partnerships, or other ways to support our mission.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button 
-                variant="default" 
-                size="lg" 
-                className="px-8 py-4 text-lg bg-white text-primary hover:bg-white/90 border-none"
-                onClick={() => window.location.href = '/contact'}
-              >
-                Start Your Partnership
-              </Button>
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="px-8 py-4 text-lg bg-transparent border-white text-white hover:bg-white/10"
-                onClick={() => window.location.href = '/contact'}
-              >
-                Get in Touch
-              </Button>
-            </div>
-            <p className="mt-6 text-sm opacity-75">
-              No forms required - contact us directly to discuss how you can help
-            </p>
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="px-6 py-3 bg-transparent border-white text-white hover:bg-white/10"
+              onClick={() => window.location.href = '/contact'}
+            >
+              Get in Touch
+            </Button>
           </div>
         </section>
 
