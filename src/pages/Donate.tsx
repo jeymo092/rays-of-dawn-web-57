@@ -68,7 +68,7 @@ const Donate = () => {
   const [donorPhone, setDonorPhone] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
   const { toast } = useToast();
-  const { formatFromUsdCents, currencyCode } = useCurrency();
+  const { formatFromUsdCents, currencyCode, exchangeRateToLocal } = useCurrency();
 
   const handleDonation = async () => {
     if (!donorEmail) {
@@ -332,7 +332,7 @@ const Donate = () => {
                 <div className="lg:col-span-1">
                   <div className="sticky top-24 space-y-6">
                     
-                    {/* Custom Donation Card */}
+                     {/* Custom Donation Card */}
                     <Card className="border-none shadow-warm bg-gradient-hope text-white">
                       <CardHeader>
                         <div className="flex items-center mb-4">
@@ -342,24 +342,77 @@ const Donate = () => {
                           <CardTitle className="text-xl text-white">Custom Donation</CardTitle>
                         </div>
                         <p className="text-white/90 text-sm">
-                          Enter any amount and donate securely. You will be redirected to Stripe checkout.
+                          Enter any amount in your local currency ({currencyCode}) and donate securely.
                         </p>
                       </CardHeader>
                       <CardContent>
                         <div className="space-y-4">
+                          {/* Quick Amount Buttons */}
                           <div className="grid grid-cols-3 gap-2">
-                            <Button variant="outline" className="bg-white text-primary hover:bg-white/90" onClick={() => setSelectedTier('custom-amount-2500')}>$25</Button>
-                            <Button variant="outline" className="bg-white text-primary hover:bg-white/90" onClick={() => setSelectedTier('custom-amount-5000')}>$50</Button>
-                            <Button variant="outline" className="bg-white text-primary hover:bg-white/90" onClick={() => setSelectedTier('custom-amount-10000')}>$100</Button>
+                            <Button 
+                              variant="secondary" 
+                              size="sm"
+                              className={`bg-white/20 text-white border-white/30 hover:bg-white/30 ${selectedTier === 'custom-amount-2500' ? 'bg-white/40' : ''}`}
+                              onClick={() => {
+                                setSelectedTier('custom-amount-2500');
+                                (window as any)._customAmountCents = 2500;
+                              }}
+                            >
+                              {formatFromUsdCents(2500)}
+                            </Button>
+                            <Button 
+                              variant="secondary" 
+                              size="sm"
+                              className={`bg-white/20 text-white border-white/30 hover:bg-white/30 ${selectedTier === 'custom-amount-5000' ? 'bg-white/40' : ''}`}
+                              onClick={() => {
+                                setSelectedTier('custom-amount-5000');
+                                (window as any)._customAmountCents = 5000;
+                              }}
+                            >
+                              {formatFromUsdCents(5000)}
+                            </Button>
+                            <Button 
+                              variant="secondary" 
+                              size="sm"
+                              className={`bg-white/20 text-white border-white/30 hover:bg-white/30 ${selectedTier === 'custom-amount-10000' ? 'bg-white/40' : ''}`}
+                              onClick={() => {
+                                setSelectedTier('custom-amount-10000');
+                                (window as any)._customAmountCents = 10000;
+                              }}
+                            >
+                              {formatFromUsdCents(10000)}
+                            </Button>
                           </div>
-                          <div>
-                            <Label htmlFor="customAmount" className="text-white font-semibold text-sm">Custom Amount</Label>
-                            <Input id="customAmount" type="number" min="1" placeholder="Enter amount" className="mt-2 bg-white text-primary" onChange={(e) => {
-                              const v = Math.max(0, Number(e.target.value || 0));
-                              // store custom amount in cents using selectedTier as marker
-                              (window as any)._customAmountCents = Math.round(v * 100);
-                              setSelectedTier('custom-amount');
-                            }} />
+
+                          {/* Custom Amount Input */}
+                          <div className="space-y-2">
+                            <Label htmlFor="custom-amount" className="text-white text-sm font-medium">
+                              Enter Custom Amount
+                            </Label>
+                            <div className="relative">
+                              <Input
+                                id="custom-amount"
+                                type="number"
+                                placeholder="0.00"
+                                min="1"
+                                step="0.01"
+                                className="bg-white/20 border-white/30 text-white placeholder:text-white/60 focus:border-white focus:ring-white/50"
+                                onChange={(e) => {
+                                  const value = parseFloat(e.target.value) || 0;
+                                  // Convert local currency to USD cents for backend
+                                  const usdAmount = value / exchangeRateToLocal;
+                                  const usdCents = Math.round(usdAmount * 100);
+                                  (window as any)._customAmountCents = usdCents;
+                                  setSelectedTier('custom-amount');
+                                }}
+                              />
+                              <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-white/70 text-sm">
+                                {currencyCode}
+                              </span>
+                            </div>
+                            <p className="text-white/70 text-xs">
+                              Minimum donation: {formatFromUsdCents(100)}
+                            </p>
                           </div>
                         </div>
                       </CardContent>
