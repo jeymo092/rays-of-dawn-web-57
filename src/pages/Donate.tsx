@@ -70,7 +70,18 @@ const Donate = () => {
   const [donorPhone, setDonorPhone] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
   const { toast } = useToast();
-  const { formatFromUsdCents, currencyCode, exchangeRateToLocal } = useCurrency();
+  const { formatFromUsdCents, currencyCode } = useCurrency();
+
+  // Handle currencies that do not have minor units (Stripe zero-decimal currencies)
+  const ZERO_DECIMAL_CURRENCIES = new Set([
+    'BIF','CLP','DJF','GNF','JPY','KMF','KRW','MGA','PYG','RWF','UGX','VND','VUV','XAF','XOF','XPF'
+  ]);
+  const isZeroDecimal = ZERO_DECIMAL_CURRENCIES.has(currencyCode.toUpperCase());
+  const parseAmount = (val: string) => {
+    const normalized = val.replace(',', '.').trim();
+    const num = parseFloat(normalized);
+    return isNaN(num) ? 0 : num;
+  };
 
   const donationOptions = [
     {
@@ -152,9 +163,12 @@ const Donate = () => {
       };
 
       if (isCustom) {
-        const amountInUsd = parseFloat(customAmount);
-        const amountCents = Math.round(amountInUsd * 100);
-        body.customAmountCents = amountCents;
+        const amountNum = parseAmount(customAmount);
+        const amountMinor = isZeroDecimal ? Math.round(amountNum) : Math.round(amountNum * 100);
+        if (!amountMinor || amountMinor <= 0) {
+          throw new Error('Invalid custom amount');
+        }
+        body.customAmountCents = amountMinor;
         body.currency = currencyCode;
       } else {
         body.priceId = tier.priceId;
@@ -258,7 +272,8 @@ const Donate = () => {
                           type="number"
                           placeholder="0.00"
                           min="1"
-                          step="0.01"
+                          step={isZeroDecimal ? 1 : 0.01}
+                          inputMode="decimal"
                           value={customAmount}
                           onChange={(e) => setCustomAmount(e.target.value)}
                           className="pr-16"
