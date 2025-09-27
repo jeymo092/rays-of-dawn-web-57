@@ -23,41 +23,41 @@ import { useCurrency } from '@/hooks/use-currency';
 const DONATION_TIERS = {
   'high-school-annual': {
     name: 'High School Sponsorship - Annual',
-    price: 123077, // ~160,000 KSH per year (~$1,231 in cents)
+    price: 123840, // 160,000 KSH per year (~$1,238 in cents)
     priceId: 'price_1SAvUXFFAVm8UZFAH5dYfmeP',
-    description: 'Complete high school sponsorship for one year - covering tuition, boarding, personal items, transport, and mentorship',
+    description: 'Complete high school sponsorship for one year - covering tuition, boarding, personal items, transport, and mentorship (160,000 KSH)',
     type: 'one-time',
     period: 'yearly'
   },
   'high-school-termly': {
     name: 'High School Sponsorship - Per Term',
-    price: 41538, // ~54,000 KSH per term (~$415 in cents)
+    price: 41784, // 54,000 KSH per term (~$418 in cents)
     priceId: 'price_1SAvWkFFAVm8UZFAQl1IpS2x',
-    description: 'High school sponsorship for one term - covering tuition, boarding, and essential needs',
+    description: 'High school sponsorship for one term - covering tuition, boarding, and essential needs (54,000 KSH)',
     type: 'one-time',
     period: 'termly'
   },
   'primary-school-annual': {
     name: 'Primary Boarding School - Annual',
-    price: 92308, // ~120,000 KSH per year (~$923 in cents)
+    price: 92880, // 120,000 KSH per year (~$929 in cents)
     priceId: 'price_1SAvWxFFAVm8UZFAnXbvl4KL',
-    description: 'Complete primary boarding school sponsorship for one year - covering all educational and boarding needs',
+    description: 'Complete primary boarding school sponsorship for one year - covering all educational and boarding needs (120,000 KSH)',
     type: 'one-time',
     period: 'yearly'
   },
   'primary-school-termly': {
     name: 'Primary Boarding School - Per Term',
-    price: 30769, // ~40,000 KSH per term (~$308 in cents)
+    price: 30952, // 40,000 KSH per term (~$310 in cents)
     priceId: 'price_1SAvXVFFAVm8UZFATiovX1js',
-    description: 'Primary boarding school sponsorship for one term - covering educational and boarding essentials',
+    description: 'Primary boarding school sponsorship for one term - covering educational and boarding essentials (40,000 KSH)',
     type: 'one-time',
     period: 'termly'
   },
   'house-rent': {
     name: 'House Rent & Bills - Monthly',
-    price: 46154, // ~60,000 KSH per month (~$462 in cents)
+    price: 46428, // 60,000 KSH per month (~$464 in cents)
     priceId: 'price_1SAvXhFFAVm8UZFAGK2eJLRY',
-    description: 'Monthly house rent and utility bills for shelter facilities',
+    description: 'Monthly house rent and utility bills for shelter facilities (60,000 KSH)',
     type: 'subscription',
     period: 'monthly'
   }
