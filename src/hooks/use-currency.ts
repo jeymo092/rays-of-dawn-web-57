@@ -42,13 +42,26 @@ export function useCurrency(): UseCurrencyResult {
 				// 2) Get exchange rate USD -> detectedCurrency
 				let localRate = 1;
 				if (detectedCurrency !== DEFAULT_CURRENCY) {
-					const rateResp = await fetch(`https://api.exchangerate.host/latest?base=USD&symbols=${encodeURIComponent(detectedCurrency)}`);
-					if (rateResp.ok) {
-						const rateData = await rateResp.json();
-						const value = rateData?.rates?.[detectedCurrency];
-						if (typeof value === 'number' && isFinite(value) && value > 0) {
-							localRate = value;
+					try {
+						// Try exchangerate-api.com which is free without API key
+						const rateResp = await fetch(`https://api.exchangerate-api.com/v4/latest/USD`);
+						if (rateResp.ok) {
+							const rateData = await rateResp.json();
+							const value = rateData?.rates?.[detectedCurrency];
+							if (typeof value === 'number' && isFinite(value) && value > 0) {
+								localRate = value;
+							}
 						}
+					} catch {
+						// Fallback: use approximate rates for common currencies
+						const commonRates: Record<string, number> = {
+							'KES': 130,
+							'EUR': 0.85,
+							'GBP': 0.75,
+							'CAD': 1.25,
+							'AUD': 1.35
+						};
+						localRate = commonRates[detectedCurrency] || 1;
 					}
 				}
 

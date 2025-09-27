@@ -22,8 +22,12 @@ serve(async (req) => {
 
     const { priceId, donorEmail, donorPhone, donationType, customAmountCents, currency } = await req.json();
     
-    if ((!priceId && !customAmountCents) || !donorEmail || !donationType) {
-      throw new Error("Missing required fields: donorEmail, donationType, and either priceId or customAmountCents");
+    if (!donorEmail || !donationType) {
+      throw new Error("Missing required fields: donorEmail and donationType are required");
+    }
+
+    if (!priceId && (!customAmountCents || customAmountCents <= 0)) {
+      throw new Error("Either priceId or valid customAmountCents must be provided");
     }
 
     logStep("Request validated", { priceId, donorEmail, donationType });
