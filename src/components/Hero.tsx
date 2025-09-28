@@ -9,10 +9,24 @@ const Hero = () => {
         loop 
         muted 
         playsInline
+        preload="metadata"
+        poster="/lovable-uploads/edbf2537-a040-4b35-88e2-ea30b5ca7e58.png"
         className="absolute inset-0 w-full h-full object-cover z-0"
+        onError={(e) => {
+          // Fallback to poster image if video fails to load
+          const target = e.target as HTMLVideoElement;
+          target.style.display = 'none';
+        }}
       >
         <source src="/hero-video.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
       </video>
+      
+      {/* Fallback background image */}
+      <div 
+        className="absolute inset-0 w-full h-full object-cover z-0 bg-cover bg-center"
+        style={{ backgroundImage: "url('/lovable-uploads/edbf2537-a040-4b35-88e2-ea30b5ca7e58.png')" }}
+      ></div>
       
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/40 z-10"></div>
