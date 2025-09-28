@@ -96,7 +96,7 @@ const Footer = () => {
           
           {/* Social Media Icons */}
           <div className="flex space-x-4 mt-4 md:mt-0">
-            <a href="#" className="text-primary-foreground/60 hover:text-white hover:scale-110 transition-all duration-300 flex items-center justify-center">
+            <a href="https://facebook.com/61581375207623" target="_blank" rel="noopener noreferrer" className="text-primary-foreground/60 hover:text-white hover:scale-110 transition-all duration-300 flex items-center justify-center">
               <span className="sr-only">Facebook</span>
               <FontAwesomeIcon icon={faFacebook} className="w-5 h-5" />
             </a>
@@ -104,7 +104,7 @@ const Footer = () => {
               <span className="sr-only">X (formerly Twitter)</span>
               <X className="w-5 h-5" />
             </a>
-            <a href="#" className="text-primary-foreground/60 hover:text-white hover:scale-110 transition-all duration-300 flex items-center justify-center">
+            <a href="https://www.instagram.com/mialeyapambazuko/" target="_blank" rel="noopener noreferrer" className="text-primary-foreground/60 hover:text-white hover:scale-110 transition-all duration-300 flex items-center justify-center">
               <span className="sr-only">Instagram</span>
               <FontAwesomeIcon icon={faInstagram} className="w-5 h-5" />
             </a>
