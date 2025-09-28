@@ -9,7 +9,7 @@ type PageHeroProps = {
 
 const PageHero: React.FC<PageHeroProps> = ({ title, subtitle, imageSrc, alt }) => {
   return (
-    <section className="relative pt-32 pb-20 text-white overflow-hidden">
+    <section className="relative pt-16 pb-12 md:pt-24 md:pb-16 text-white overflow-hidden">
       <img src={imageSrc} alt={alt || title} className="absolute inset-0 w-full h-full object-cover" />
       <div className="absolute inset-0" />
       <div className="container mx-auto px-6 relative z-10 text-center">
