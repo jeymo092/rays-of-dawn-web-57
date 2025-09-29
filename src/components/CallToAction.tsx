@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBook, faHome, faGift } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 const CallToAction = () => {
   return (
@@ -23,21 +24,21 @@ const CallToAction = () => {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-          <a href="/donate">
+          <Link to="/donate">
             <Button variant="default" size="lg" className="px-8 py-4 text-lg bg-white text-primary hover:bg-white/90 border-none">
               Donate Today
             </Button>
-          </a>
-          <a href="/donate">
+          </Link>
+          <Link to="/donate">
             <Button variant="hero" size="lg" className="px-8 py-4 text-lg">
               Sponsor a Girl
             </Button>
-          </a>
-          <a href="/contact">
+          </Link>
+          <Link to="/contact">
             <Button variant="hero" size="lg" className="px-8 py-4 text-lg">
               Volunteer With Us
             </Button>
-          </a>
+          </Link>
         </div>
       </div>
     </section>
