@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faPhone, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { X } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -43,29 +44,29 @@ const Footer = () => {
             <h3 className="font-bold text-lg mb-4 text-hope">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <a href="/about" className="text-primary-foreground/80 hover:text-white transition-colors">
+                <Link to="/about" className="text-primary-foreground/80 hover:text-white transition-colors">
                   About Us
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/programs" className="text-primary-foreground/80 hover:text-white transition-colors">
+                <Link to="/programs" className="text-primary-foreground/80 hover:text-white transition-colors">
                   Our Programs
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/impact" className="text-primary-foreground/80 hover:text-white transition-colors">
+                <Link to="/impact" className="text-primary-foreground/80 hover:text-white transition-colors">
                   Our Impact
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/contact" className="text-primary-foreground/80 hover:text-white transition-colors">
+                <Link to="/contact" className="text-primary-foreground/80 hover:text-white transition-colors">
                   Volunteer
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/contact" className="text-primary-foreground/80 hover:text-white transition-colors">
+                <Link to="/donate" className="text-primary-foreground/80 hover:text-white transition-colors">
                   Donate
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -75,14 +76,14 @@ const Footer = () => {
             <h3 className="font-bold text-lg mb-4 text-hope">Legal</h3>
             <ul className="space-y-2">
               <li>
-                <a href="/privacy-policy" className="text-primary-foreground/80 hover:text-white transition-colors">
+                <Link to="/privacy-policy" className="text-primary-foreground/80 hover:text-white transition-colors">
                   Privacy Policy
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/terms-of-service" className="text-primary-foreground/80 hover:text-white transition-colors">
+                <Link to="/terms-of-service" className="text-primary-foreground/80 hover:text-white transition-colors">
                   Terms of Service
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

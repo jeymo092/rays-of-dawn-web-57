@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone, faEnvelope, faMapMarkerAlt, faHeart } from '@fortawesome/free-solid-svg-icons';
-
+import { Link } from 'react-router-dom';
 const Contact = () => {
   return (
     <main className="min-h-screen">
@@ -112,12 +112,16 @@ const Contact = () => {
                   Join our community of supporters and help us empower more girls.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3">
-                  <Button variant="hope" size="lg">
-                    Donate Now
-                  </Button>
-                  <Button variant="outline" size="lg">
-                    Become a Volunteer
-                  </Button>
+                  <Link to="/donate">
+                    <Button variant="hope" size="lg">
+                      Donate Now
+                    </Button>
+                  </Link>
+                  <Link to="/contact">
+                    <Button variant="outline" size="lg">
+                      Become a Volunteer
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </div>
