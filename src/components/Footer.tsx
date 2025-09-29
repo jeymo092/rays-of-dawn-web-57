@@ -1,7 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faPhone, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
-import { faFacebook, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons';
-import { X } from 'lucide-react';
+import { faFacebook, faInstagram, faLinkedin, faXTwitter } from '@fortawesome/free-brands-svg-icons';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
@@ -103,7 +102,7 @@ const Footer = () => {
             </a>
             <a href="https://x.com/MPambazuko" target="_blank" rel="noopener noreferrer" className="text-primary-foreground/60 hover:text-white hover:scale-110 transition-all duration-300 flex items-center justify-center">
               <span className="sr-only">X (formerly Twitter)</span>
-              <X className="w-5 h-5" />
+              <FontAwesomeIcon icon={faXTwitter} className="w-5 h-5" />
             </a>
             <a href="https://www.instagram.com/mialeyapambazuko/" target="_blank" rel="noopener noreferrer" className="text-primary-foreground/60 hover:text-white hover:scale-110 transition-all duration-300 flex items-center justify-center">
               <span className="sr-only">Instagram</span>
