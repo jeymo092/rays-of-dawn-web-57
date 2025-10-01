@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet';
 import { useState } from 'react';
+import { z } from 'zod';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -18,6 +19,24 @@ import educationSupportImg from '@/assets/education-support.jpg';
 import mentorshipImg from '@/assets/mentorship.jpg';
 import skillsDevelopmentImg from '@/assets/skills-development.jpg';
 import { useCurrency } from '@/hooks/use-currency';
+
+// Input validation schema for security
+const donationSchema = z.object({
+  email: z.string()
+    .trim()
+    .email({ message: "Please enter a valid email address" })
+    .max(255, { message: "Email must be less than 255 characters" }),
+  phone: z.string()
+    .trim()
+    .max(20, { message: "Phone number must be less than 20 characters" })
+    .regex(/^[+\d\s()-]*$/, { message: "Phone number contains invalid characters" })
+    .optional()
+    .or(z.literal('')),
+  customAmount: z.number()
+    .positive({ message: "Amount must be greater than 0" })
+    .max(1000000, { message: "Amount exceeds maximum limit" })
+    .optional(),
+});
 
 // Donation tiers with Stripe price IDs
 const DONATION_TIERS = {
@@ -117,15 +136,6 @@ const Donate = () => {
   ];
 
   const handleDonation = async () => {
-    if (!donorEmail) {
-      toast({
-        title: "Email Required",
-        description: "Please enter your email address",
-        variant: "destructive",
-      });
-      return;
-    }
-
     if (!selectedTier) {
       toast({
         title: "Selection Required",
@@ -137,13 +147,37 @@ const Donate = () => {
 
     const isCustom = selectedTier === 'custom';
     
-    if (isCustom && (!customAmount || parseFloat(customAmount) <= 0)) {
-      toast({
-        title: "Amount Required",
-        description: "Please enter a valid custom amount",
-        variant: "destructive",
-      });
-      return;
+    // Validate inputs using zod schema for security
+    try {
+      const validationData: any = {
+        email: donorEmail,
+        phone: donorPhone || '',
+      };
+
+      if (isCustom) {
+        const amountNum = parseAmount(customAmount);
+        if (!amountNum || amountNum <= 0) {
+          toast({
+            title: "Invalid Amount",
+            description: "Please enter a valid donation amount greater than 0",
+            variant: "destructive",
+          });
+          return;
+        }
+        validationData.customAmount = amountNum;
+      }
+
+      // Validate all inputs
+      donationSchema.parse(validationData);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        toast({
+          title: "Invalid Input",
+          description: error.errors[0]?.message || "Please check your input and try again",
+          variant: "destructive",
+        });
+        return;
+      }
     }
 
     const tier = DONATION_TIERS[selectedTier as keyof typeof DONATION_TIERS];
@@ -294,26 +328,28 @@ const Donate = () => {
                       <Label htmlFor="email" className="text-primary font-semibold">
                         Email Address *
                       </Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        placeholder="your@email.com"
-                        value={donorEmail}
-                        onChange={(e) => setDonorEmail(e.target.value)}
-                        required
-                      />
+                       <Input
+                          id="email"
+                          type="email"
+                          placeholder="your@email.com"
+                          value={donorEmail}
+                          onChange={(e) => setDonorEmail(e.target.value)}
+                          maxLength={255}
+                          required
+                        />
                     </div>
 
                     <div className="space-y-2">
                       <Label htmlFor="phone" className="text-primary font-semibold">
                         Phone Number (Optional)
                       </Label>
-                      <Input
+                       <Input
                         id="phone"
                         type="tel"
                         placeholder="+1 (555) 123-4567"
                         value={donorPhone}
                         onChange={(e) => setDonorPhone(e.target.value)}
+                        maxLength={20}
                       />
                     </div>
                   </div>
