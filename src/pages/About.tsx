@@ -135,8 +135,11 @@ const About = () => {
                 Our Objectives
               </h2>
               <div className="bg-gradient-hope rounded-lg p-8 text-white mb-6">
-                <p className="text-xl font-semibold text-center mb-6">
+                <p className="text-xl font-semibold text-center mb-4">
                   Our major objective is to: Rescue, Heal, Reunification, Reintegration, Mentor and Empower
+                </p>
+                <p className="text-lg text-center opacity-90">
+                  Through the implementation of new care reform, we ensure every intervention follows best practices in child protection and empowerment
                 </p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
