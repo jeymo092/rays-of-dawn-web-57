@@ -80,7 +80,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-primary mb-1">Phone</h3>
-                    <p className="text-muted-foreground">+254 XXX XXX XXX</p>
+                    <p className="text-muted-foreground">+254702218333</p>
                   </div>
                 </div>
 
@@ -100,7 +100,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-primary mb-1">Address</h3>
-                    <p className="text-muted-foreground">Nairobi, Kenya</p>
+                    <p className="text-muted-foreground">Kamulu, Nairobi east</p>
                   </div>
                 </div>
               </div>
