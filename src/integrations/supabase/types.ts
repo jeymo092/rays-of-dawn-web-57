@@ -67,10 +67,54 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      donations_safe: {
+        Row: {
+          amount: number | null
+          created_at: string | null
+          currency: string | null
+          donation_type: string | null
+          donor_email: string | null
+          id: string | null
+          invoice_id: string | null
+          net_amount: number | null
+          payment_method: string | null
+          status: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          amount?: number | null
+          created_at?: string | null
+          currency?: string | null
+          donation_type?: string | null
+          donor_email?: string | null
+          id?: string | null
+          invoice_id?: string | null
+          net_amount?: number | null
+          payment_method?: string | null
+          status?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          amount?: number | null
+          created_at?: string | null
+          currency?: string | null
+          donation_type?: string | null
+          donor_email?: string | null
+          id?: string | null
+          invoice_id?: string | null
+          net_amount?: number | null
+          payment_method?: string | null
+          status?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
-      [_ in never]: never
+      log_sensitive_data_access: {
+        Args: { accessed_table: string; operation: string; user_email?: string }
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never
