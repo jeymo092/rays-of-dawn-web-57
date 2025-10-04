@@ -17,7 +17,7 @@ const About = () => {
               About Miale Ya Pambazuko
             </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Rays of Dawn - Empowering vulnerable Kenyan girls since 2016
+              Non-profit child welfare oriented organization
             </p>
           </div>
         </div>
