@@ -39,7 +39,7 @@ const About = () => {
                 Just as the name suggests, the aim of Pambazuko project is to give hope and a better tomorrow to Kenyan girls who at one point or the other face barriers and hurdles which prevent them from forging ahead with their inspirations. Some of these barriers are due to poverty, teenage pregnancies, forced early marriages, dysfunctional families and other cultural norms and practices.
               </p>
               <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                We are a non-profit making organization which seeks to empower teenagers and poor girls in Kenya. We do this through education, trainings and other mapped out activities geared towards their betterment. Our conviction is that a better future is built and maintained through education and other well executed empowerment options.
+                We are a non-profit child welfare oriented organization which seeks to empower teenagers and poor girls in Kenya. We do this through education, trainings and other mapped out activities geared towards their betterment. Our conviction is that a better future is built and maintained through education and other well executed empowerment options.
               </p>
               <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
                 Our intention is to give them a safe space and another chance to pick their pieces. We encourage them to continue dreaming again. We empower them through secondary education and tertiary institutions among other uplifting options and eventually reintegration back to their families.
