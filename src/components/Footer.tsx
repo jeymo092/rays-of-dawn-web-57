@@ -13,7 +13,8 @@ const Footer = () => {
             <div className="flex items-center space-x-3 mb-4">
               <img 
                 src="/lovable-uploads/03541fd2-f202-4a05-a4f4-c99e32a3be5a.png" 
-                alt="Pambazuko For Chances Logo" 
+                alt="Pambazuko For Chances Logo"
+                loading="lazy"
                 className="h-12 w-auto"
               />
               <div className="font-bold text-xl">Miale Ya Pambazuko</div>

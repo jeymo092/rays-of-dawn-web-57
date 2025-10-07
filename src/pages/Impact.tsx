@@ -22,7 +22,7 @@ const Impact = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Card 1 with background image */}
             <div className="relative rounded-lg overflow-hidden">
-              <img src={girlsStudyingImg} alt="Rescued and Empowered" className="absolute inset-0 w-full h-full object-cover" />
+              <img src={girlsStudyingImg} alt="Rescued and Empowered" loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
               <div className="absolute inset-0 bg-black/40" />
               <div className="relative m-4 md:m-6 bg-white/15 backdrop-blur-md rounded-lg p-6 border border-white/20">
                 <h3 className="text-xl md:text-2xl font-bold text-hope drop-shadow-md mb-2">Rescued & Empowered</h3>
@@ -35,7 +35,7 @@ const Impact = () => {
 
             {/* Card 2 with background image */}
             <div className="relative rounded-lg overflow-hidden">
-              <img src={mentorshipImg} alt="Dedication and Experience" className="absolute inset-0 w-full h-full object-cover" />
+              <img src={mentorshipImg} alt="Dedication and Experience" loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
               <div className="absolute inset-0 bg-black/40" />
               <div className="relative m-4 md:m-6 bg-white/15 backdrop-blur-md rounded-lg p-6 border border-white/20">
                 <h3 className="text-xl md:text-2xl font-bold text-hope drop-shadow-md mb-2">Dedication & Experience</h3>

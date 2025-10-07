@@ -30,7 +30,8 @@ const About = () => {
             <div>
               <img 
                 src={aboutUsImg} 
-                alt="Children learning in a safe environment" 
+                alt="Children learning in a safe environment"
+                loading="lazy"
                 className="w-full h-auto rounded-lg shadow-elegant"
               />
             </div>
