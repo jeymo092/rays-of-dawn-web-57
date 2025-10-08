@@ -11,7 +11,6 @@ const Hero = () => {
         muted 
         playsInline
         preload="metadata"
-        poster="/lovable-uploads/03541fd2-f202-4a05-a4f4-c99e32a3be5a.png"
         className="absolute inset-0 w-full h-full object-cover z-0"
       >
         <source src="/hero-video.mp4" type="video/mp4" />
