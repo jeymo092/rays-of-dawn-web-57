@@ -24,7 +24,7 @@ const Header = () => {
             />
             <div className="text-primary">
               <h1 className="text-xl md:text-2xl font-bold leading-tight">Miale Ya Pambazuko</h1>
-              <p className="text-xs md:text-sm italic text-primary/80">Rays of Dawn</p>
+              <p className="text-xs md:text-sm italic text-foreground">Rays of Dawn</p>
             </div>
           </Link>
 
