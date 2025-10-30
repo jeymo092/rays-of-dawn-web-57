@@ -37,23 +37,23 @@ const About = () => {
             </div>
             <div>
               <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                Just as the name suggests, the aim of Pambazuko project is to give hope and a better tomorrow to Kenyan girls who at one point or the other face barriers and hurdles which prevent them from forging ahead with their inspirations. Some of these barriers are due to poverty, teenage pregnancies, forced early marriages, dysfunctional families and other cultural norms and practices.
+                Just as the name suggests, the Pambazuko project aims to give hope and a better tomorrow to girls who face barriers and hurdles preventing them from forging ahead with their aspirations. These barriers include poverty, teenage pregnancies, forced early marriages, dysfunctional families, and harmful cultural norms.
               </p>
               <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                We are a non-profit child welfare oriented organization which seeks to empower teenagers and poor girls in Kenya. We do this through education, trainings and other mapped out activities geared towards their betterment. Our conviction is that a better future is built and maintained through education and other well executed empowerment options.
+                This non-profit child welfare organization empowers teenagers and vulnerable girls through education, training, and strategic activities designed for their advancement. The conviction: a better future is built and maintained through education and well-executed empowerment opportunities.
               </p>
               <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                Our intention is to give them a safe space and another chance to pick their pieces. We encourage them to continue dreaming again. We empower them through secondary education and tertiary institutions among other uplifting options and eventually reintegration back to their families.
+                The mission creates safe spaces where girls can rebuild their lives and continue dreaming. Through secondary education, tertiary institutions, and other uplifting programs, the organization supports eventual reintegration back to families.
               </p>
             </div>
           </div>
           
           <div className="max-w-4xl mx-auto mt-12">
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              Pambazuko works with the most needy girls especially those in crises. We endeavor to help them live their lives in full enjoying what God intended for them. Our model is fully participatory whereby together we plan on the intended interventions.
+              Pambazuko serves the most vulnerable girls, especially those in crisis. The goal: help them live their lives fully, enjoying what God intended for them. The model is fully participatory, planning interventions collaboratively with each girl.
             </p>
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              We walk together as they try to change their family and generational stories and in shaping their future destiny by embracing the chances and life lessons presented to them. Together we try to dissolve the issues that have been hindering their progress and holding them hostage.
+              This journey changes family and generational stories, shaping future destinies by embracing opportunities and life lessons. The work dissolves issues that have hindered progress and held girls hostage to their circumstances.
             </p>
           </div>
         </div>
@@ -68,7 +68,7 @@ const About = () => {
                 <FontAwesomeIcon icon={faHeart} className="text-6xl mb-4" />
                 <h3 className="text-2xl font-bold mb-4">Our Vision</h3>
                 <p className="text-lg leading-relaxed">
-                  As an organization that seeks to give a lasting and positive impact to the communities, we envisage well empowered members (girls) in our society who through our accompaniment, mentorship and empowerment chances, have achieved freedom from oppressive patterns of life to living better lives full of dignity and cherishing the values of a good community.
+                  Seeking to create lasting positive impact in communities, the vision encompasses well-empowered girls who, through accompaniment, mentorship, and empowerment opportunities, achieve freedom from oppressive life patterns to live dignified lives that cherish community values.
                 </p>
               </div>
             </div>
@@ -140,7 +140,7 @@ const About = () => {
                   Our major objective is to: Rescue, Heal, Reunification, Reintegration, Mentor and Empower
                 </p>
                 <p className="text-lg text-center opacity-90">
-                  Through the implementation of new care reform, we ensure every intervention follows best practices in child protection and empowerment
+                  Through implementing new care reform, every intervention follows best practices in child protection and empowerment
                 </p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

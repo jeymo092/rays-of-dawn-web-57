@@ -16,7 +16,7 @@ const Contact = () => {
       {/* Hero Section - clear image background */}
       <PageHero 
         title="Get In Touch" 
-        subtitle="Join us in our mission to empower vulnerable Kenyan girls" 
+        subtitle="Join the mission to empower vulnerable girls" 
         imageSrc={mentorshipImg}
       />
 
@@ -46,7 +46,7 @@ const Contact = () => {
                 
                 <div>
                   <label className="text-sm font-medium text-primary mb-2 block">Subject</label>
-                  <Input placeholder="How can we help you?" />
+                  <Input placeholder="How can the team help you?" />
                 </div>
                 
                 <div>

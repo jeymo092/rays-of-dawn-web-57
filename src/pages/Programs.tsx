@@ -11,7 +11,7 @@ const ProgramsPage = () => {
       
       {/* Hero Section - clear image background */}
       <PageHero 
-        title="What We Do"
+        title="Our Programs"
         subtitle="The Twelve Steps: Our comprehensive approach from entrance to exit"
         imageSrc={skillsDevelopmentImg}
       />

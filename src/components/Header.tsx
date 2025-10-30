@@ -36,7 +36,7 @@ const Header = () => {
               About Us
             </Link>
             <Link to="/programs" className="text-foreground hover:text-primary transition-smooth font-medium">
-              What we do
+              Our Programs
             </Link>
             <Link to="/impact" className="text-foreground hover:text-primary transition-smooth font-medium">
               Impact
@@ -89,7 +89,7 @@ const Header = () => {
                 className="text-foreground hover:text-primary transition-smooth font-medium py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                What we do
+                Our Programs
               </Link>
               <Link 
                 to="/impact" 

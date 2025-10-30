@@ -38,7 +38,7 @@ const Hero = () => {
           </Link>
           <Link to="/programs">
             <Button variant="hero" size="lg" className="px-8 py-4 text-lg">
-              What we do
+              Our Programs
             </Button>
           </Link>
         </div>
@@ -51,7 +51,7 @@ const Hero = () => {
           </div>
           <div className="bg-white/15 backdrop-blur-md rounded-lg p-6 border border-white/20">
             <h3 className="text-lg font-bold text-hope drop-shadow-md mb-2">Dedication & Experience</h3>
-            <p className="text-sm text-white/90">Years of experience in service to children in need, building trust and creating lasting change in communities across Kenya.</p>
+            <p className="text-sm text-white/90">Years of experience in service to children in need, building trust and creating lasting change in communities everywhere.</p>
           </div>
         </div>
       </div>

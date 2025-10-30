@@ -9,14 +9,14 @@ const PrivacyPolicy = () => {
     <div className="min-h-screen bg-background">
       <Helmet>
         <title>Privacy Policy - Miale Ya Pambazuko</title>
-        <meta name="description" content="Privacy Policy for Miale Ya Pambazuko - Learn how we protect and handle your personal information." />
+        <meta name="description" content="Privacy Policy for Miale Ya Pambazuko - Learn how personal information is protected and handled." />
       </Helmet>
       
       <Header />
       
       <PageHero 
         title="Privacy Policy"
-        subtitle="How we protect and handle your personal information"
+        subtitle="How personal information is protected and handled"
         imageSrc={educationSupportImg}
       />
 
@@ -25,34 +25,34 @@ const PrivacyPolicy = () => {
           
           <div className="prose prose-lg max-w-none text-muted-foreground space-y-8">
             <section>
-              <h2 className="text-2xl font-semibold text-foreground mb-4">Information We Collect</h2>
+              <h2 className="text-2xl font-semibold text-foreground mb-4">Information Collection</h2>
               <p>
-                We collect information you provide directly to us, such as when you donate, volunteer, 
-                subscribe to our newsletter, or contact us. This may include your name, email address, 
-                phone number, and donation information.
+                Information provided directly through donations, volunteer applications, 
+                newsletter subscriptions, or contact forms is collected. This may include names, email addresses, 
+                phone numbers, and donation information.
               </p>
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-foreground mb-4">How We Use Your Information</h2>
+              <h2 className="text-2xl font-semibold text-foreground mb-4">Information Usage</h2>
               <p>
-                We use the information we collect to provide our services, process donations, 
-                communicate with you about our programs, and improve our organization's effectiveness.
+                Collected information serves to provide services, process donations, 
+                communicate about programs, and improve organizational effectiveness.
               </p>
             </section>
 
             <section>
               <h2 className="text-2xl font-semibold text-foreground mb-4">Information Sharing</h2>
               <p>
-                We do not sell, trade, or otherwise transfer your personal information to third parties 
-                without your consent, except as described in this policy or as required by law.
+                Personal information is not sold, traded, or transferred to third parties 
+                without consent, except as described in this policy or as required by law.
               </p>
             </section>
 
             <section>
               <h2 className="text-2xl font-semibold text-foreground mb-4">Data Security</h2>
               <p>
-                We implement appropriate security measures to protect your personal information against 
+                Appropriate security measures protect personal information against 
                 unauthorized access, alteration, disclosure, or destruction.
               </p>
             </section>

@@ -20,7 +20,7 @@ const Footer = () => {
               <div className="font-bold text-xl">Miale Ya Pambazuko</div>
             </div>
             <p className="text-primary-foreground/80 mb-4 leading-relaxed">
-              Empowering vulnerable Kenyan girls through education, mentorship, and comprehensive support services. 
+              Empowering vulnerable girls through education, mentorship, and comprehensive support services. 
               Building a brighter future, one girl at a time.
             </p>
             <div className="space-y-2">
@@ -34,7 +34,7 @@ const Footer = () => {
               </p>
               <p className="text-sm flex items-center gap-2">
                 <FontAwesomeIcon icon={faMapMarkerAlt} className="w-4 h-4 text-hope flex-shrink-0" />
-                <span className="font-medium">Address:</span> Nairobi, Kenya
+                <span className="font-medium">Address:</span> Nairobi
               </p>
             </div>
           </div>

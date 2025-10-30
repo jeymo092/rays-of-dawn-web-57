@@ -233,8 +233,8 @@ const Donate = () => {
     <>
       <Helmet>
         <title>Donate - Partner With Pambazuko For Chances</title>
-        <meta name="description" content="Support education and empowerment in Kenya. Learn about our partnership opportunities including financial assistance, donations, and sponsorships." />
-        <meta name="keywords" content="donate, sponsor education, Kenya charity, student sponsorship, educational support" />
+        <meta name="description" content="Support education and empowerment. Learn about partnership opportunities including financial assistance, donations, and sponsorships." />
+        <meta name="keywords" content="donate, sponsor education, charity, student sponsorship, educational support" />
       </Helmet>
       
       <main className="min-h-screen">
@@ -243,7 +243,7 @@ const Donate = () => {
         {/* Hero Section - clear image background */}
         <PageHero 
           title="How You Can Partner With Us"
-          subtitle="Together, we can transform lives through education and empowerment"
+          subtitle="Transform lives through education and empowerment"
           imageSrc={donationHelpImg}
               alt="Hands giving donation to help children" 
         />
@@ -478,7 +478,7 @@ const Donate = () => {
               Questions About Donating?
             </h2>
             <p className="text-lg mb-6 opacity-90 max-w-2xl mx-auto">
-              We're here to help! Contact us if you have questions about donations, partnerships, or other ways to support our mission.
+              Questions about donations, partnerships, or other ways to support this mission? Get in touch!
             </p>
             <Button 
               variant="outline" 

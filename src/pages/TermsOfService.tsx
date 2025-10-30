@@ -35,8 +35,8 @@ const TermsOfService = () => {
             <section>
               <h2 className="text-2xl font-semibold text-foreground mb-4">Use of Website</h2>
               <p>
-                This website is provided for informational purposes about our organization and 
-                our mission to empower vulnerable Kenyan girls through education and support.
+                This website is provided for informational purposes about the organization and 
+                its mission to empower vulnerable girls through education and support.
               </p>
             </section>
 
@@ -44,7 +44,7 @@ const TermsOfService = () => {
               <h2 className="text-2xl font-semibold text-foreground mb-4">Donations</h2>
               <p>
                 All donations made through our website are final and non-refundable unless 
-                required by law. We use donations to support our programs and operations.
+                required by law. Donations support programs and operations.
               </p>
             </section>
 

@@ -19,8 +19,8 @@ const CallToAction = () => {
         </h2>
         
         <p className="text-xl md:text-2xl mb-8 text-white/90 max-w-3xl mx-auto">
-          Your support can transform the life of a vulnerable girl and help break the cycle of poverty. 
-          Together, we can create lasting change in Kenya — and support girls in need.
+          Your support transforms lives and breaks the cycle of poverty. 
+          Every contribution creates lasting change and empowers girls to reach their full potential.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">

@@ -12,7 +12,7 @@ const Impact = () => {
       {/* Hero Section - clear image background */}
       <PageHero 
         title="Our Impact"
-        subtitle="Transforming lives and building brighter futures for Kenyan girls"
+        subtitle="Transforming lives and building brighter futures"
         imageSrc={girlsStudyingImg}
       />
 
@@ -40,7 +40,7 @@ const Impact = () => {
               <div className="relative m-4 md:m-6 bg-white/15 backdrop-blur-md rounded-lg p-6 border border-white/20">
                 <h3 className="text-xl md:text-2xl font-bold text-hope drop-shadow-md mb-2">Dedication & Experience</h3>
                 <p className="text-white/90">
-                  Years of experience in service to children in need, building trust and creating lasting change in communities across Kenya.
+                  Years of experience in service to children in need, building trust and creating lasting change in communities everywhere.
                 </p>
               </div>
             </div>

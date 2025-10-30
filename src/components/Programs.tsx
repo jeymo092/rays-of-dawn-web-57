@@ -20,7 +20,7 @@ const Programs = () => {
     {
       icon: faGraduationCap,
       title: "Education Sponsorship",
-      description: "We provide full scholarships for primary, secondary, and college education to ensure girls can achieve their academic dreams and break the cycle of poverty.",
+      description: "Full scholarships for primary, secondary, and college education ensure girls can achieve their academic dreams and break the cycle of poverty.",
       gradient: "bg-gradient-hope",
       image: educationSupportImg
     },
@@ -34,7 +34,7 @@ const Programs = () => {
     {
       icon: faGift,
       title: "Feminine Health & Hygiene",
-      description: "We provide sanitary towels, hygiene products, and health education to help girls maintain dignity and stay in school during menstruation.",
+      description: "Sanitary towels, hygiene products, and health education help girls maintain dignity and stay in school during menstruation.",
       gradient: "bg-gradient-sunset",
       image: feminineHealthImg
     },
@@ -69,7 +69,7 @@ const Programs = () => {
             Our Programs
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            We provide comprehensive support to vulnerable girls through these transformative initiatives that address their immediate needs and long-term empowerment.
+            Comprehensive support transforms vulnerable girls through these initiatives that address immediate needs and long-term empowerment.
           </p>
         </div>
 

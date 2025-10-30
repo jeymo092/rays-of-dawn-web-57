@@ -113,7 +113,7 @@ const DonationSuccess = () => {
                     <div className="bg-warm-gray/30 p-4 rounded-lg">
                       <h4 className="font-semibold text-primary mb-2">Impact Updates</h4>
                       <p className="text-sm text-muted-foreground">
-                        We'll keep you updated on how your donation is making a difference in the lives of children.
+                        Stay updated on how your donation makes a difference in the lives of children.
                       </p>
                     </div>
 
