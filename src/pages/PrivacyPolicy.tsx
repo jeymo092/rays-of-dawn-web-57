@@ -61,7 +61,7 @@ const PrivacyPolicy = () => {
               <h2 className="text-2xl font-semibold text-foreground mb-4">Contact Us</h2>
               <p>
                 If you have any questions about this Privacy Policy, please contact us at 
-                info@mialeyapambazuko.org or +254 XXX XXX XXX.
+                info@mialeyapambazuko.org or +254702218333.
               </p>
             </section>
 

@@ -68,7 +68,7 @@ const TermsOfService = () => {
               <h2 className="text-2xl font-semibold text-foreground mb-4">Contact Information</h2>
               <p>
                 For questions about these Terms of Service, please contact us at 
-                info@mialeyapambazuko.org or +254 XXX XXX XXX.
+                info@mialeyapambazuko.org or +254702218333.
               </p>
             </section>
 
