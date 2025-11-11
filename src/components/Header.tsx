@@ -20,7 +20,7 @@ const Header = () => {
             <img 
               src="/lovable-uploads/03541fd2-f202-4a05-a4f4-c99e32a3be5a.png" 
               alt="Pambazuko For Chances Logo" 
-              className="h-16 w-auto"
+              className="h-20 w-auto"
             />
             <div className="text-primary">
               <h1 className="text-xl md:text-2xl font-bold leading-tight">Miale Ya Pambazuko</h1>
