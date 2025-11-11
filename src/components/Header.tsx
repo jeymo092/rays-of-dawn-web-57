@@ -2,29 +2,39 @@ import { Button } from "@/components/ui/button";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   return (
-    <header className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-sm border-b border-border shadow-warm">
-      <div className="container mx-auto px-6 py-4">
+    <header className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-sm border-b border-border shadow-warm transition-all duration-300">
+      <div className={`container mx-auto px-6 transition-all duration-300 ${isScrolled ? 'py-2' : 'py-4'}`}>
         <div className="flex items-center justify-between">
           {/* Logo and Title */}
           <Link to="/" className="flex items-center space-x-3">
             <img 
               src="/lovable-uploads/03541fd2-f202-4a05-a4f4-c99e32a3be5a.png" 
               alt="Pambazuko For Chances Logo" 
-              className="h-20 w-auto"
+              className={`w-auto transition-all duration-300 ${isScrolled ? 'h-12' : 'h-20'}`}
             />
             <div className="text-primary">
-              <h1 className="text-xl md:text-2xl font-bold leading-tight">Miale Ya Pambazuko</h1>
-              <p className="text-xs md:text-sm italic text-foreground">Rays of Dawn</p>
+              <h1 className={`font-bold leading-tight transition-all duration-300 ${isScrolled ? 'text-lg md:text-xl' : 'text-xl md:text-2xl'}`}>Miale Ya Pambazuko</h1>
+              <p className={`italic text-foreground transition-all duration-300 ${isScrolled ? 'text-[10px] md:text-xs' : 'text-xs md:text-sm'}`}>Rays of Dawn</p>
             </div>
           </Link>
 
