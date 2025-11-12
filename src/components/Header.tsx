@@ -33,26 +33,26 @@ const Header = () => {
               className={`w-auto transition-all duration-300 ${isScrolled ? 'h-12' : 'h-20'}`}
             />
             <div className={`transition-all duration-300 ${isScrolled ? 'text-primary' : 'text-white'}`}>
-              <h1 className={`font-bold leading-tight transition-all duration-300 ${isScrolled ? 'text-lg md:text-xl' : 'text-xl md:text-2xl'} ${!isScrolled && 'drop-shadow-lg'}`}>Miale Ya Pambazuko</h1>
-              <p className={`italic transition-all duration-300 ${isScrolled ? 'text-[10px] md:text-xs' : 'text-xs md:text-sm'} ${!isScrolled && 'drop-shadow-lg'}`}>Rays of Dawn</p>
+              <h1 className={`font-bold leading-tight transition-all duration-300 ${isScrolled ? 'text-lg md:text-xl' : 'text-xl md:text-2xl'}`}>Miale Ya Pambazuko</h1>
+              <p className={`italic transition-all duration-300 ${isScrolled ? 'text-[10px] md:text-xs' : 'text-xs md:text-sm'}`}>Rays of Dawn</p>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <Link to="/" className={`transition-smooth font-medium ${isScrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-white/80 drop-shadow-lg'}`}>
+            <Link to="/" className={`transition-smooth font-medium ${isScrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-white/80'}`}>
               Home
             </Link>
-            <Link to="/about" className={`transition-smooth font-medium ${isScrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-white/80 drop-shadow-lg'}`}>
+            <Link to="/about" className={`transition-smooth font-medium ${isScrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-white/80'}`}>
               About Us
             </Link>
-            <Link to="/programs" className={`transition-smooth font-medium ${isScrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-white/80 drop-shadow-lg'}`}>
+            <Link to="/programs" className={`transition-smooth font-medium ${isScrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-white/80'}`}>
               Our Programs
             </Link>
-            <Link to="/impact" className={`transition-smooth font-medium ${isScrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-white/80 drop-shadow-lg'}`}>
+            <Link to="/impact" className={`transition-smooth font-medium ${isScrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-white/80'}`}>
               Impact
             </Link>
-            <Link to="/contact" className={`transition-smooth font-medium ${isScrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-white/80 drop-shadow-lg'}`}>
+            <Link to="/contact" className={`transition-smooth font-medium ${isScrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-white/80'}`}>
               Contact
             </Link>
           </nav>
@@ -66,7 +66,7 @@ const Header = () => {
 
           {/* Mobile menu button */}
           <button 
-            className={`md:hidden p-2 transition-colors flex items-center justify-center ${isScrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-white/80 drop-shadow-lg'}`}
+            className={`md:hidden p-2 transition-colors flex items-center justify-center ${isScrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-white/80'}`}
             onClick={toggleMenu}
             aria-label="Toggle menu"
           >
@@ -79,7 +79,7 @@ const Header = () => {
 
         {/* Mobile Navigation Menu */}
         {isMenuOpen && (
-          <div className={`md:hidden mt-6 pb-6 border-t transition-all duration-300 ${isScrolled ? 'border-border bg-background' : 'border-white/20 bg-background/95 backdrop-blur-md'}`}>
+          <div className={`md:hidden mt-6 pb-6 border-t transition-all duration-300 ${isScrolled ? 'border-border bg-background' : 'border-transparent bg-transparent backdrop-blur-0'}`}>
             <nav className="flex flex-col space-y-4 pt-6">
               <Link 
                 to="/" 
