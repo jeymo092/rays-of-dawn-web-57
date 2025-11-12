@@ -22,7 +22,7 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-sm border-b border-border shadow-warm transition-all duration-300">
+    <header className={`fixed top-0 w-full z-50 border-b border-border shadow-warm transition-all duration-300 ${isScrolled ? 'bg-background/80 backdrop-blur-md' : 'bg-background'}`}>
       <div className={`container mx-auto px-6 transition-all duration-300 ${isScrolled ? 'py-2' : 'py-4'}`}>
         <div className="flex items-center justify-between">
           {/* Logo and Title */}
