@@ -79,39 +79,39 @@ const Header = () => {
 
         {/* Mobile Navigation Menu */}
         {isMenuOpen && (
-          <div className="md:hidden mt-6 pb-6 border-t border-border">
+          <div className={`md:hidden mt-6 pb-6 border-t transition-all duration-300 ${isScrolled ? 'border-border bg-background' : 'border-white/20 bg-background/95 backdrop-blur-md'}`}>
             <nav className="flex flex-col space-y-4 pt-6">
               <Link 
                 to="/" 
-                className="text-foreground hover:text-primary transition-smooth font-medium py-2"
+                className={`transition-smooth font-medium py-2 ${isScrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-white/80'}`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Home
               </Link>
               <Link 
                 to="/about" 
-                className="text-foreground hover:text-primary transition-smooth font-medium py-2"
+                className={`transition-smooth font-medium py-2 ${isScrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-white/80'}`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 About Us
               </Link>
               <Link 
                 to="/programs" 
-                className="text-foreground hover:text-primary transition-smooth font-medium py-2"
+                className={`transition-smooth font-medium py-2 ${isScrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-white/80'}`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Our Programs
               </Link>
               <Link 
                 to="/impact" 
-                className="text-foreground hover:text-primary transition-smooth font-medium py-2"
+                className={`transition-smooth font-medium py-2 ${isScrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-white/80'}`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Impact
               </Link>
               <Link 
                 to="/contact" 
-                className="text-foreground hover:text-primary transition-smooth font-medium py-2"
+                className={`transition-smooth font-medium py-2 ${isScrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-white/80'}`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Contact
