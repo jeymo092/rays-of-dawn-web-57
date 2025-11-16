@@ -19,7 +19,7 @@ const Programs = () => {
   const programs = [
     {
       icon: faGraduationCap,
-      title: "Education Sponsorship",
+      title: "Education support",
       description: "Full scholarships for primary, secondary, and college education ensure girls can achieve their academic dreams and break the cycle of poverty.",
       gradient: "bg-gradient-hope",
       image: educationSupportImg
