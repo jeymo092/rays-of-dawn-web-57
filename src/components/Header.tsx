@@ -22,7 +22,7 @@ const Header = () => {
   };
 
   return (
-    <header className={`fixed top-0 w-full z-50 border-b transition-all duration-300 ${isScrolled ? 'bg-background border-border shadow-warm' : 'bg-transparent border-transparent'}`}>
+    <header className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-sm border-b border-border shadow-warm transition-all duration-300">
       <div className={`container mx-auto px-6 transition-all duration-300 ${isScrolled ? 'py-2' : 'py-4'}`}>
         <div className="flex items-center justify-between">
           {/* Logo and Title */}
@@ -32,27 +32,27 @@ const Header = () => {
               alt="Pambazuko For Chances Logo" 
               className={`w-auto transition-all duration-300 ${isScrolled ? 'h-12' : 'h-20'}`}
             />
-            <div className={`transition-all duration-300 ${isScrolled ? 'text-primary' : 'text-white'}`}>
+            <div className="text-primary">
               <h1 className={`font-bold leading-tight transition-all duration-300 ${isScrolled ? 'text-lg md:text-xl' : 'text-xl md:text-2xl'}`}>Miale Ya Pambazuko</h1>
-              <p className={`italic transition-all duration-300 ${isScrolled ? 'text-[10px] md:text-xs' : 'text-xs md:text-sm'}`}>Rays of Dawn</p>
+              <p className={`italic text-foreground transition-all duration-300 ${isScrolled ? 'text-[10px] md:text-xs' : 'text-xs md:text-sm'}`}>Rays of Dawn</p>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <Link to="/" className={`transition-smooth font-medium ${isScrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-white/80'}`}>
+            <Link to="/" className="text-foreground hover:text-primary transition-smooth font-medium">
               Home
             </Link>
-            <Link to="/about" className={`transition-smooth font-medium ${isScrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-white/80'}`}>
+            <Link to="/about" className="text-foreground hover:text-primary transition-smooth font-medium">
               About Us
             </Link>
-            <Link to="/programs" className={`transition-smooth font-medium ${isScrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-white/80'}`}>
+            <Link to="/programs" className="text-foreground hover:text-primary transition-smooth font-medium">
               Our Programs
             </Link>
-            <Link to="/impact" className={`transition-smooth font-medium ${isScrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-white/80'}`}>
+            <Link to="/impact" className="text-foreground hover:text-primary transition-smooth font-medium">
               Impact
             </Link>
-            <Link to="/contact" className={`transition-smooth font-medium ${isScrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-white/80'}`}>
+            <Link to="/contact" className="text-foreground hover:text-primary transition-smooth font-medium">
               Contact
             </Link>
           </nav>
@@ -66,7 +66,7 @@ const Header = () => {
 
           {/* Mobile menu button */}
           <button 
-            className={`md:hidden p-2 transition-colors flex items-center justify-center ${isScrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-white/80'}`}
+            className="md:hidden p-2 text-foreground hover:text-primary transition-colors flex items-center justify-center"
             onClick={toggleMenu}
             aria-label="Toggle menu"
           >
@@ -79,39 +79,39 @@ const Header = () => {
 
         {/* Mobile Navigation Menu */}
         {isMenuOpen && (
-          <div className={`md:hidden mt-6 pb-6 border-t transition-all duration-300 ${isScrolled ? 'border-border bg-background' : 'border-transparent bg-transparent backdrop-blur-0'}`}>
+          <div className="md:hidden mt-6 pb-6 border-t border-border">
             <nav className="flex flex-col space-y-4 pt-6">
               <Link 
                 to="/" 
-                className={`transition-smooth font-medium py-2 ${isScrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-white/80'}`}
+                className="text-foreground hover:text-primary transition-smooth font-medium py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Home
               </Link>
               <Link 
                 to="/about" 
-                className={`transition-smooth font-medium py-2 ${isScrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-white/80'}`}
+                className="text-foreground hover:text-primary transition-smooth font-medium py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 About Us
               </Link>
               <Link 
                 to="/programs" 
-                className={`transition-smooth font-medium py-2 ${isScrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-white/80'}`}
+                className="text-foreground hover:text-primary transition-smooth font-medium py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Our Programs
               </Link>
               <Link 
                 to="/impact" 
-                className={`transition-smooth font-medium py-2 ${isScrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-white/80'}`}
+                className="text-foreground hover:text-primary transition-smooth font-medium py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Impact
               </Link>
               <Link 
                 to="/contact" 
-                className={`transition-smooth font-medium py-2 ${isScrolled ? 'text-foreground hover:text-primary' : 'text-white hover:text-white/80'}`}
+                className="text-foreground hover:text-primary transition-smooth font-medium py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Contact
