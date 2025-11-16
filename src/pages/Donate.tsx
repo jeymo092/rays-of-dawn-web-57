@@ -73,10 +73,10 @@ const DONATION_TIERS = {
     period: 'termly'
   },
   'house-rent': {
-    name: 'House Rent & Bills - Monthly',
-    price: 46428, // 60,000 KSH per month (~$464 in cents)
+    name: 'Office Running - Monthly',
+    price: 96725, // 125,000 KSH per month (~$967 in cents)
     priceId: 'price_1SAvXhFFAVm8UZFAGK2eJLRY',
-    description: 'Monthly house rent and utility bills for shelter facilities (60,000 KSH)',
+    description: 'Monthly office running costs and operational expenses (125,000 KSH)',
     type: 'subscription',
     period: 'monthly'
   }
@@ -125,8 +125,8 @@ const Donate = () => {
     },
     {
       value: 'house-rent',
-      label: `House Rent & Bills (${formatFromUsdCents(46200)}/month)`,
-      description: 'Monthly house rent and utility bills for facilities'
+      label: `Office Running (${formatFromUsdCents(96725)}/month)`,
+      description: 'Monthly office running costs and operational expenses'
     },
     {
       value: 'custom',
