@@ -42,7 +42,7 @@ const donationSchema = z.object({
 const DONATION_TIERS = {
   'high-school-termly': {
     name: 'High School Support - Per Term',
-    price: 41784, // 54,000 KSH per term (~$418 in cents)
+    price: 41796, // 54,000 KSH per term
     priceId: 'price_1SAvWkFFAVm8UZFAQl1IpS2x',
     description: 'High school support for one term - covering tuition, boarding, and essential needs (54,000 KSH)',
     type: 'one-time',
@@ -50,7 +50,7 @@ const DONATION_TIERS = {
   },
   'primary-school-termly': {
     name: 'Primary Boarding School - Per Term',
-    price: 30952, // 40,000 KSH per term (~$310 in cents)
+    price: 30960, // 40,000 KSH per term
     priceId: 'price_1SAvXVFFAVm8UZFATiovX1js',
     description: 'Primary boarding school support for one term - covering educational and boarding essentials (40,000 KSH)',
     type: 'one-time',
@@ -89,12 +89,12 @@ const Donate = () => {
   const donationOptions = [
     {
       value: 'high-school-termly',
-      label: `High School Support - Per Term (${formatFromUsdCents(41784)})`,
+      label: `High School Support - Per Term (${formatFromUsdCents(41796)})`,
       description: 'High school support for one term - covering tuition, boarding, and essential needs (54,000 KSH)'
     },
     {
       value: 'primary-school-termly',
-      label: `Primary School Support - Per Term (${formatFromUsdCents(30952)})`,
+      label: `Primary School Support - Per Term (${formatFromUsdCents(30960)})`,
       description: 'Primary boarding school support for one term - covering educational and boarding essentials (40,000 KSH)'
     },
     {
