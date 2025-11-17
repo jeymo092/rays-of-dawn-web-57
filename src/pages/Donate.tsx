@@ -40,14 +40,6 @@ const donationSchema = z.object({
 
 // Donation tiers with Stripe price IDs
 const DONATION_TIERS = {
-  'high-school-annual': {
-    name: 'High School Support - Annual',
-    price: 123840, // 160,000 KSH per year (~$1,238 in cents)
-    priceId: 'price_1SAvUXFFAVm8UZFAH5dYfmeP',
-    description: 'Complete high school support for one year - covering tuition, boarding, personal items, transport, and mentorship (160,000 KSH)',
-    type: 'one-time',
-    period: 'yearly'
-  },
   'high-school-termly': {
     name: 'High School Support - Per Term',
     price: 41784, // 54,000 KSH per term (~$418 in cents)
@@ -55,14 +47,6 @@ const DONATION_TIERS = {
     description: 'High school support for one term - covering tuition, boarding, and essential needs (54,000 KSH)',
     type: 'one-time',
     period: 'termly'
-  },
-  'primary-school-annual': {
-    name: 'Primary Boarding School - Annual',
-    price: 92880, // 120,000 KSH per year (~$929 in cents)
-    priceId: 'price_1SAvWxFFAVm8UZFAnXbvl4KL',
-    description: 'Complete primary boarding school support for one year - covering all educational and boarding needs (120,000 KSH)',
-    type: 'one-time',
-    period: 'yearly'
   },
   'primary-school-termly': {
     name: 'Primary Boarding School - Per Term',
@@ -104,24 +88,14 @@ const Donate = () => {
 
   const donationOptions = [
     {
-      value: 'high-school-annual',
-      label: `High School Support - Annual (${formatFromUsdCents(123100)})`,
-      description: 'Complete high school support covering tuition, boarding, personal items, transport, and mentorship'
+      value: 'high-school-termly',
+      label: `High School Support - Per Term (${formatFromUsdCents(41784)})`,
+      description: 'High school support for one term - covering tuition, boarding, and essential needs (54,000 KSH)'
     },
     {
-      value: 'high-school-monthly',
-      label: `High School Support - Monthly (${formatFromUsdCents(10258)}/month)`,
-      description: 'Monthly high school support with flexible payment schedule'
-    },
-    {
-      value: 'primary-school-annual',
-      label: `Primary School Support - Annual (${formatFromUsdCents(92400)})`,
-      description: 'Complete primary boarding school package with all necessities'
-    },
-    {
-      value: 'primary-school-monthly',
-      label: `Primary School Support - Monthly (${formatFromUsdCents(7700)}/month)`,
-      description: 'Monthly primary school support with flexible payment schedule'
+      value: 'primary-school-termly',
+      label: `Primary School Support - Per Term (${formatFromUsdCents(30952)})`,
+      description: 'Primary boarding school support for one term - covering educational and boarding essentials (40,000 KSH)'
     },
     {
       value: 'house-rent',
