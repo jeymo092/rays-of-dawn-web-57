@@ -41,18 +41,18 @@ const donationSchema = z.object({
 // Donation tiers with Stripe price IDs
 const DONATION_TIERS = {
   'high-school-annual': {
-    name: 'High School Sponsorship - Annual',
+    name: 'High School Support - Annual',
     price: 123840, // 160,000 KSH per year (~$1,238 in cents)
     priceId: 'price_1SAvUXFFAVm8UZFAH5dYfmeP',
-    description: 'Complete high school sponsorship for one year - covering tuition, boarding, personal items, transport, and mentorship (160,000 KSH)',
+    description: 'Complete high school support for one year - covering tuition, boarding, personal items, transport, and mentorship (160,000 KSH)',
     type: 'one-time',
     period: 'yearly'
   },
   'high-school-termly': {
-    name: 'High School Sponsorship - Per Term',
+    name: 'High School Support - Per Term',
     price: 41784, // 54,000 KSH per term (~$418 in cents)
     priceId: 'price_1SAvWkFFAVm8UZFAQl1IpS2x',
-    description: 'High school sponsorship for one term - covering tuition, boarding, and essential needs (54,000 KSH)',
+    description: 'High school support for one term - covering tuition, boarding, and essential needs (54,000 KSH)',
     type: 'one-time',
     period: 'termly'
   },
@@ -60,7 +60,7 @@ const DONATION_TIERS = {
     name: 'Primary Boarding School - Annual',
     price: 92880, // 120,000 KSH per year (~$929 in cents)
     priceId: 'price_1SAvWxFFAVm8UZFAnXbvl4KL',
-    description: 'Complete primary boarding school sponsorship for one year - covering all educational and boarding needs (120,000 KSH)',
+    description: 'Complete primary boarding school support for one year - covering all educational and boarding needs (120,000 KSH)',
     type: 'one-time',
     period: 'yearly'
   },
@@ -68,7 +68,7 @@ const DONATION_TIERS = {
     name: 'Primary Boarding School - Per Term',
     price: 30952, // 40,000 KSH per term (~$310 in cents)
     priceId: 'price_1SAvXVFFAVm8UZFATiovX1js',
-    description: 'Primary boarding school sponsorship for one term - covering educational and boarding essentials (40,000 KSH)',
+    description: 'Primary boarding school support for one term - covering educational and boarding essentials (40,000 KSH)',
     type: 'one-time',
     period: 'termly'
   },
@@ -105,23 +105,23 @@ const Donate = () => {
   const donationOptions = [
     {
       value: 'high-school-annual',
-      label: `High School Sponsorship - Annual (${formatFromUsdCents(123100)})`,
-      description: 'Complete high school sponsorship covering tuition, boarding, personal items, transport, and mentorship'
+      label: `High School Support - Annual (${formatFromUsdCents(123100)})`,
+      description: 'Complete high school support covering tuition, boarding, personal items, transport, and mentorship'
     },
     {
       value: 'high-school-monthly',
-      label: `High School Sponsorship - Monthly (${formatFromUsdCents(10258)}/month)`,
-      description: 'Monthly high school sponsorship with flexible payment schedule'
+      label: `High School Support - Monthly (${formatFromUsdCents(10258)}/month)`,
+      description: 'Monthly high school support with flexible payment schedule'
     },
     {
       value: 'primary-school-annual',
-      label: `Primary School Sponsorship - Annual (${formatFromUsdCents(92400)})`,
+      label: `Primary School Support - Annual (${formatFromUsdCents(92400)})`,
       description: 'Complete primary boarding school package with all necessities'
     },
     {
       value: 'primary-school-monthly',
-      label: `Primary School Sponsorship - Monthly (${formatFromUsdCents(7700)}/month)`,
-      description: 'Monthly primary school sponsorship with flexible payment schedule'
+      label: `Primary School Support - Monthly (${formatFromUsdCents(7700)}/month)`,
+      description: 'Monthly primary school support with flexible payment schedule'
     },
     {
       value: 'house-rent',
@@ -233,8 +233,8 @@ const Donate = () => {
     <>
       <Helmet>
         <title>Donate - Partner With Pambazuko For Chances</title>
-        <meta name="description" content="Support education and empowerment. Learn about partnership opportunities including financial assistance, donations, and sponsorships." />
-        <meta name="keywords" content="donate, sponsor education, charity, student sponsorship, educational support" />
+        <meta name="description" content="Support education and empowerment. Learn about partnership opportunities including financial assistance, donations, and educational support." />
+        <meta name="keywords" content="donate, sponsor education, charity, student support, educational support" />
       </Helmet>
       
       <main className="min-h-screen">
@@ -433,7 +433,7 @@ const Donate = () => {
                   </CardHeader>
                   <CardContent>
                     <p className="text-sm text-muted-foreground">
-                      Complete educational sponsorship including tuition, boarding, materials, and mentorship programs.
+                      Complete educational support including tuition, boarding, materials, and mentorship programs.
                     </p>
                   </CardContent>
                 </Card>
