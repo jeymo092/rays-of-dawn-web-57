@@ -43,7 +43,7 @@ const DONATION_TIERS = {
   'high-school-termly': {
     name: 'High School Support - Per Term',
     price: 41796, // 54,000 KSH per term
-    priceId: 'price_1SAvWkFFAVm8UZFAQl1IpS2x',
+    priceId: 'price_1SV5MFFFAVm8UZFAlnkdiTQk',
     description: 'High school support for one term - covering tuition, boarding, and essential needs (54,000 KSH)',
     type: 'one-time',
     period: 'termly'
@@ -51,14 +51,14 @@ const DONATION_TIERS = {
   'primary-school-termly': {
     name: 'Primary Boarding School - Per Term',
     price: 30960, // 40,000 KSH per term
-    priceId: 'price_1SAvXVFFAVm8UZFATiovX1js',
+    priceId: 'price_1SV5MbFFAVm8UZFA2xqH0HLW',
     description: 'Primary boarding school support for one term - covering educational and boarding essentials (40,000 KSH)',
     type: 'one-time',
     period: 'termly'
   },
   'house-rent': {
     name: 'Office Running - Monthly',
-    price: 96750, // 125,000 KSH per month (~$967.50 in cents)
+    price: 96750, // 125,000 KSH per month
     priceId: 'price_1SAvXhFFAVm8UZFAGK2eJLRY',
     description: 'Monthly office running costs and operational expenses (125,000 KSH)',
     type: 'subscription',
