@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content="0;url=/" />
+    <title>Redirecting...</title>
+    <script>
+      // SPA redirect script for 404 handling
+      sessionStorage.setItem('redirect', location.pathname + location.search + location.hash);
+      window.location.replace('/');
+    </script>
+  </head>
+  <body>
+    <p>Redirecting...</p>
+  </body>
+</html>
