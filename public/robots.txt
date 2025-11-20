@@ -12,3 +12,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://mialeyapambazuko.lovable.app/sitemap.xml
